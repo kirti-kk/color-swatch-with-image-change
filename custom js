@@ -1,0 +1,34 @@
+find slate variant in theme.js 
+find(" _getVariantFromOptions ") and replace code
+ _getVariantFromOptions: function() {
+      var selectedValues = this._getCurrentOptions();
+      console.log("selected value");
+console.log(selectedValues);
+
+      var variants = this.product.variants;
+//  console.log("selected variants");
+// console.log(variants);
+      var found = variants.find(function(variant) {
+        return selectedValues.every(function(values) {
+          return variant[values.index] === values.value;
+        });
+      });
+       
+console.log("matched")
+
+      var variant_image = found.featured_image.src;
+      $('.gallery-img-main img').each(function(){
+var all_slider_img = $(this).attr("src");
+//         console.log(all_slider_img);
+        if(variant_image.split('https:')[1] == all_slider_img){
+  $(this).trigger('click');
+
+          console.log('match images')
+        }
+        else{
+        
+        }
+      });
+      return found;
+    
+    },
